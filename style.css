@@ -17,11 +17,11 @@ body
     font-family: 'Akaya Telivigala', cursive;
   
   }
-#canvas
+canvas
 {
   border: 5px solid white;
   border-radius : 15px;  
-  margin-right: 25%;
+  margin-right: 35%;
   margin-bottom : 100px;
 } 
 .heading
