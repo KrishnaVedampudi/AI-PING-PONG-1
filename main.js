@@ -36,10 +36,11 @@ function setup(){
 function gotPoses(results)
 {
   if(results.length > 0)
-    {      
-    RightWristX = results[0].pose.nose.x;
-    RightWirstY = results[0].pose.nose.y;        
-    console.log(results);
+    {  
+      scoreRightWrist = results[0].pose.keypoints[10].score;        
+      RightWristX = results[0].pose.nose.x;
+      RightWirstY = results[0].pose.nose.y;        
+      console.log(results);
     }  
 }
 
@@ -90,10 +91,14 @@ function draw(){
    
    //function move call which in very important
     move();
+    if(scoreRightWrist > 0.4)
+    {
+        fill("red");
+        stroke("red");
+        circle(RightWristX, RightWristY, 25);
+    }
     
-    fill("red");
-    stroke("red");
-    circle(RightWristX, RightWristY, 25);
+    
 }
 
 
