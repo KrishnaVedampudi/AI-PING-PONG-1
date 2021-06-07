@@ -191,6 +191,12 @@ if(pcscore ==4){
        ball.dy =- ball.dy;
    }   
 }
+function restart()
+{
+    pcscore =0;
+    playerscore =0;
+    loop();
+}
 
 
 //width height of canvas speed of ball 
