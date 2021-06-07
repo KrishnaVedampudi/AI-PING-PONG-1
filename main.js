@@ -96,7 +96,7 @@ function draw(){
    
    //function move call which in very important
     move();
-    if(scoreRightWrist > 0.4)
+    if(scoreRightWrist > 0.0004)
     {
         fill("red");
         stroke("red");
