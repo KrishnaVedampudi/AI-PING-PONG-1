@@ -54,8 +54,8 @@ function gotPoses(results)
   if(results.length > 0)
     {  
       scoreRightWrist = results[0].pose.keypoints[10].score;        
-      rightWristX = results[0].pose.nose.x;
-      rightWirstY = results[0].pose.nose.y;        
+      rightWristX = results[0].pose.rightWrist.x;
+      rightWirstY = results[0].pose.rightWrist.y;        
       console.log(results);
     }  
 }
