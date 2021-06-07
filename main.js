@@ -22,12 +22,12 @@ var ball = {
 }
 
 function setup(){
-   var canvas =  createCanvas(700,600);
+   var canvas =  createCanvas(500,500);
    canvas.parent('canvas');
    canvas.center();
     
    video = createCapture(VIDEO);
-   video.size(700, 600);
+   video.size(500, 500);
    video.hide();
     
    poseNet = ml5.poseNet(video, modelLoaded);
