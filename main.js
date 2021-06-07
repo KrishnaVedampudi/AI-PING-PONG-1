@@ -22,7 +22,7 @@ var ball = {
 }
 
 function setup(){
-   var canvas =  createCanvas(500,500);
+   var canvas =  createCanvas(700,500);
    canvas.parent('canvas');
    canvas.center();
     
