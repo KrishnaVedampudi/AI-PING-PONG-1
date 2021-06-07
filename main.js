@@ -10,8 +10,9 @@ var score1 = 0, score2 =0;
 var paddle1Y;
 
 var scoreRightWrist;
-var RightWristX;
-var RightWristY;
+var rightWristX;
+var rightWristY;
+var gameStatus;
 
 var  playerscore =0;
 var audio1;
@@ -24,7 +25,15 @@ var ball = {
     dx:3,
     dy:3
 }
-
+function preload()
+{
+    loadSound("ball_touch_paddel.wav");
+    loadSound("missed.wav");
+}    
+function startGame()
+{
+    gameStatus = "start";
+}
 function setup(){
    var canvas =  createCanvas(700,500);
    canvas.parent('canvas');
@@ -43,8 +52,8 @@ function gotPoses(results)
   if(results.length > 0)
     {  
       scoreRightWrist = results[0].pose.keypoints[10].score;        
-      RightWristX = results[0].pose.nose.x;
-      RightWirstY = results[0].pose.nose.y;        
+      rightWristX = results[0].pose.nose.x;
+      rightWirstY = results[0].pose.nose.y;        
       console.log(results);
     }  
 }
@@ -56,7 +65,8 @@ function modelLoaded ()
 
 
 function draw(){
-
+if (gameStatus == "start")
+{
  background(0); 
     
  image(video, 0, 0, 700, 600);   
@@ -100,16 +110,16 @@ function draw(){
     {
         fill("red");
         stroke("red");
-        circle(RightWristX, RightWristY, 25);
+        circle(rightWristX, rightWristY, 25);
     }
-    
+}
     
 }
 
 
 
 //function reset when ball does notcame in the contact of padde
-function reset(){
+function reset(){   
    ball.x = width/2+100,
    ball.y = height/2+100;
    ball.dx=3;
@@ -156,9 +166,11 @@ function move(){
   if (ball.x-2.5*ball.r/2< 0){
   if (ball.y >= paddle1Y&& ball.y <= paddle1Y + paddle1Height) {
     ball.dx = -ball.dx+0.5; 
+    play("ball_touch_paddel.wav");  
   }
   else{
     pcscore++;
+    play("missed.wav"); 
     reset();
     navigator.vibrate(100);
   }
@@ -170,8 +182,8 @@ if(pcscore ==4){
     fill("white");
     stroke("white");
     textSize(25)
-    text("Game Over!☹☹",width/2,height/2);
-    text("Reload The Page!",width/2,height/2+30)
+    text("Game Over!!",width/2,height/2);
+    text("Press Restart button to play again!",width/2,height/2+30)
     noLoop();
     pcscore = 0;
 }
