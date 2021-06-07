@@ -168,11 +168,11 @@ function move(){
   if (ball.x-2.5*ball.r/2< 0){
   if (ball.y >= paddle1Y&& ball.y <= paddle1Y + paddle1Height) {
     ball.dx = -ball.dx+0.5; 
-    play(ball_touch);  
+    ball_touch.play();
   }
   else{
     pcscore++;
-    play(missed); 
+    missed.play();
     reset();
     navigator.vibrate(100);
   }
