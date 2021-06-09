@@ -1,6 +1,4 @@
 
-/*created by prashant shukla */
-
 var paddle2 =10,paddle1=10;
 
 var paddle1X = 10,paddle1Height = 110;
@@ -10,8 +8,8 @@ var score1 = 0, score2 =0;
 var paddle1Y;
 
 var scoreRightWrist;
-var rightWristX;
-var rightWristY;
+var rightX;
+var rightY;
 var gameStatus;
 
 var  playerscore =0;
@@ -54,10 +52,9 @@ function gotPoses(results)
   if(results.length > 0)
     {  
       scoreRightWrist = results[0].pose.keypoints[10].score;        
-      rightWristX = results[0].pose.rightWrist.x;
-      rightWirstY = results[0].pose.rightWrist.y;   
-      console.log(rightWristX);
-      console.log(rightWristY);  
+      rightX = results[0].pose.rightWrist.x;
+      rightY = results[0].pose.rightWrist.y;   
+      console.log("Right Wrist X = "+rightX+"Right Wrist Y = "+rightY);
       console.log(results);
     }  
 }
@@ -90,7 +87,7 @@ if (gameStatus == "start")
    fill(250,0,0);
     stroke(0,0,250);
     strokeWeight(0.5);
-   paddle1Y = rightWristY; 
+   paddle1Y = rightY; 
    rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
    
    
@@ -110,11 +107,11 @@ if (gameStatus == "start")
    
    //function move call which in very important
     move();
-    if(scoreRightWrist > 0.0004)
+    if(scoreRightWrist > 0.4)
     {
         fill("red");
         stroke("red");
-        circle(rightWristX, rightWristY, 25);
+        circle(rightX, rightY, 25);
     }
 }
     
